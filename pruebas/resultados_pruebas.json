@@ -1,0 +1,1360 @@
+[
+ {
+  "id": "CP-ACC-01",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Inicio de sesión del Administrador",
+  "datos": "admin / admin123",
+  "esperado": "Mensaje de bienvenida y menú con 6 opciones",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Bienvenido(a), Administrador"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-ACC-02",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Inicio de sesión de un Vendedor (código y DPI)",
+  "datos": "V001 / 2456789010101",
+  "esperado": "Bienvenida con rol Vendedor y menú reducido (Clientes, Facturación, Pagos)",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Bienvenido(a), Carlos Méndez López (Vendedor)"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-ACC-03",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Contraseña incorrecta y luego correcta",
+  "datos": "mal/123, admin/mala, admin/admin123",
+  "esperado": "Avisa intento 1 de 3 y 2 de 3; al tercero entra",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Credenciales incorrectas (intento 1 de 3).",
+   "Credenciales incorrectas (intento 2 de 3).",
+   "Bienvenido(a), Administrador"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-ACC-04",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Tres intentos fallidos cierran el sistema",
+  "datos": "3 pares de credenciales incorrectas",
+  "esperado": "Mensaje de demasiados intentos y cierre",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Demasiados intentos fallidos. El sistema se cerrará."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-ACC-05",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Un Repartidor no puede iniciar sesión",
+  "datos": "R001 / 3011223340101",
+  "esperado": "Credenciales incorrectas",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Credenciales incorrectas (intento 1 de 3)."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-ACC-06",
+  "req": "REQ-0009",
+  "prio": "Media",
+  "desc": "Vendedor con DPI incorrecto",
+  "datos": "V001 / 0000000000000",
+  "esperado": "Credenciales incorrectas",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Credenciales incorrectas (intento 1 de 3)."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-01",
+  "req": "REQ-0001",
+  "prio": "Alta",
+  "desc": "Registrar un Vendedor",
+  "datos": "V003, DPI 4444444440101, Luis Barrios, tipo 1",
+  "esperado": "Empleado registrado; tipo Vendedor en la BD",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Empleado registrado correctamente."
+  ],
+  "bd": [
+   "Vendedor"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-02",
+  "req": "REQ-0001",
+  "prio": "Alta",
+  "desc": "Registrar un Repartidor (generalización por tipo)",
+  "datos": "R002, DPI 5555555550101, Mario Tzoc, tipo 2",
+  "esperado": "Empleado registrado; tipo Repartidor en la BD",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Empleado registrado correctamente."
+  ],
+  "bd": [
+   "Repartidor"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-03",
+  "req": "REQ-0001",
+  "prio": "Alta",
+  "desc": "Código de empleado duplicado",
+  "datos": "V001 (ya existe)",
+  "esperado": "Rechaza con mensaje claro",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No se pudo completar la operación: Ya existe un empleado con ese código."
+  ],
+  "bd": [
+   "3"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-04",
+  "req": "REQ-0001",
+  "prio": "Alta",
+  "desc": "DPI duplicado",
+  "datos": "V009 con DPI 2456789010101 (de V001)",
+  "esperado": "Rechaza; no se crea el empleado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No se pudo completar la operación: Ya existe un empleado con ese DPI."
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-05",
+  "req": "REQ-0001",
+  "prio": "Media",
+  "desc": "Dato obligatorio vacío (código)",
+  "datos": "Enter en blanco, luego V010",
+  "esperado": "Avisa que el dato es obligatorio y vuelve a pedirlo",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Este dato es obligatorio.",
+   "Empleado registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-06",
+  "req": "REQ-0001",
+  "prio": "Media",
+  "desc": "Tipo de empleado fuera de rango",
+  "datos": "Tipo 5, luego 1",
+  "esperado": "Rechaza el 5 y vuelve a pedir",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero entre 1 y 2.",
+   "Empleado registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-07",
+  "req": "REQ-0001",
+  "prio": "Media",
+  "desc": "Modificar el teléfono de un empleado",
+  "datos": "V001, teléfono nuevo 5599-0000",
+  "esperado": "Dato actualizado en la BD",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Empleado actualizado correctamente.",
+   "Código del empleado a modificar: V001"
+  ],
+  "bd": [
+   "5599-0000"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-08",
+  "req": "REQ-0001",
+  "prio": "Baja",
+  "desc": "Modificar un empleado que no existe",
+  "datos": "Código ZZZ",
+  "esperado": "Mensaje de no encontrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No existe un empleado con ese código."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-EMP-09",
+  "req": "REQ-0001",
+  "prio": "Media",
+  "desc": "Consultar empleados",
+  "datos": "Opción Consultar",
+  "esperado": "Lista con 3 empleados y su tipo",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 3"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-01",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "Registrar cliente asignado a un vendedor",
+  "datos": "Distribuidora Santa Rosa, NIT 4455667-1, vendedor V001",
+  "esperado": "Cliente registrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Cliente registrado correctamente."
+  ],
+  "bd": [
+   "V001"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-02",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "NIT duplicado",
+  "datos": "NIT 1234567-8 (ya existe)",
+  "esperado": "Rechaza con mensaje claro",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No se pudo completar la operación: Ya existe un cliente con ese NIT."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-03",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "Asignar cliente a un Repartidor",
+  "datos": "Vendedor asignado: R001",
+  "esperado": "Rechaza: solo vendedores",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Ese código no corresponde a un Vendedor registrado."
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-04",
+  "req": "REQ-0002",
+  "prio": "Media",
+  "desc": "Nombre del cliente vacío",
+  "datos": "Enter, luego un nombre",
+  "esperado": "Pide el dato obligatorio",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Este dato es obligatorio.",
+   "Cliente registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-05",
+  "req": "REQ-0002",
+  "prio": "Media",
+  "desc": "Modificar teléfono de un cliente",
+  "datos": "Cliente 1, teléfono 2299-0000",
+  "esperado": "Dato actualizado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Cliente actualizado correctamente."
+  ],
+  "bd": [
+   "2299-0000"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-06",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "El vendedor solo ve su propia cartera",
+  "datos": "V001 consulta clientes",
+  "esperado": "Ve a Tienda La Esperanza, no ve a Abarrotes El Chapín (de V002)",
+  "estado": "Aprobado",
+  "obtenido": [
+   "1  Tienda La Esperanza       1234567-8    2234-5678   María Gómez         V001",
+   "Total de registros: 1"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-07",
+  "req": "REQ-0002",
+  "prio": "Media",
+  "desc": "Cliente nuevo registrado por un vendedor",
+  "datos": "V001 registra Cliente Vend",
+  "esperado": "Se asigna automáticamente a V001",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Vendedor asignado: V001 (usted)",
+   "Cliente registrado correctamente."
+  ],
+  "bd": [
+   "V001"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-CLI-08",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "Historial de un cliente con facturas y pagos",
+  "datos": "Cliente 3 (Mini Super San José)",
+  "esperado": "Muestra sus facturas y el saldo",
+  "estado": "Aprobado",
+  "obtenido": [
+   "3  Mini Super San José       9988776-K    2255-0099   Rosa Díaz           V001",
+   "Cliente: Mini Super San José   NIT: 9988776-K",
+   "Total de registros: 3"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-01",
+  "req": "REQ-0003",
+  "prio": "Alta",
+  "desc": "Registrar producto válido",
+  "datos": "P005 Trapeador, costo 20, precio 35, existencia 40",
+  "esperado": "Producto registrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Producto registrado correctamente."
+  ],
+  "bd": [
+   "40"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-02",
+  "req": "REQ-0003",
+  "prio": "Alta",
+  "desc": "Código de producto duplicado",
+  "datos": "P001 (ya existe)",
+  "esperado": "Rechaza con mensaje claro",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No se pudo completar la operación: Ya existe un producto con ese código."
+  ],
+  "bd": [
+   "Jabón líquido multiusos 1L"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-03",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Costo con texto en lugar de número",
+  "datos": "Costo: abc, luego 10",
+  "esperado": "Rechaza el texto y vuelve a pedir",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número mayor o igual a 0.",
+   "Producto registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-04",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Existencia negativa",
+  "datos": "Existencia: -3, luego 5",
+  "esperado": "Rechaza el valor negativo",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero mayor o igual a 0.",
+   "Producto registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-05",
+  "req": "REQ-0003",
+  "prio": "Baja",
+  "desc": "Precio de venta menor al costo",
+  "datos": "Costo 10, precio 8",
+  "esperado": "Muestra aviso pero permite guardar",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Aviso: el precio de venta es menor al costo.",
+   "Producto registrado correctamente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-06",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Modificar el precio de un producto",
+  "datos": "P001, precio nuevo Q26.00",
+  "esperado": "Precio actualizado en la BD",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Producto actualizado correctamente."
+  ],
+  "bd": [
+   "26.0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-07",
+  "req": "REQ-0003",
+  "prio": "Alta",
+  "desc": "Ingreso de mercadería",
+  "datos": "P004, cantidad 15 (existencia inicial 50)",
+  "esperado": "Existencia sube a 65",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Existencia actualizada: Escoba plástica ahora tiene 65 unidades."
+  ],
+  "bd": [
+   "65"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-08",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Ingreso de mercadería con cantidad 0",
+  "datos": "Cantidad 0, luego 5",
+  "esperado": "Rechaza el 0",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero mayor o igual a 1.",
+   "Existencia actualizada: Escoba plástica ahora tiene 55 unidades."
+  ],
+  "bd": [
+   "55"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PRO-09",
+  "req": "REQ-0003",
+  "prio": "Baja",
+  "desc": "Ingreso a un producto que no existe",
+  "datos": "Código P999",
+  "esperado": "Mensaje de no encontrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No existe un producto con ese código."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-01",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Factura al contado con IVA",
+  "datos": "Cliente 1, contado, 10 x P001 (Q25) + 2 x P004 (Q30)",
+  "esperado": "Subtotal 310.00, IVA 37.20, total 347.20; inventario baja; pago automático con saldo 0",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Resumen: Subtotal Q 310.00 | IVA Q 37.20 | TOTAL Q 347.20"
+  ],
+  "bd": [
+   "110",
+   "48",
+   "0.0",
+   "347.2"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-02",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Factura a crédito con plazo",
+  "datos": "Cliente 2, crédito 30 días, 12 x P002 (Q48)",
+  "esperado": "Subtotal 576.00, IVA 69.12, total 645.12; sin pago; vence en 30 días",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Resumen: Subtotal Q 576.00 | IVA Q 69.12 | TOTAL Q 645.12"
+  ],
+  "bd": [
+   "0",
+   "30",
+   "30.0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-03",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Cantidad mayor a la existencia (límite +1)",
+  "datos": "P003 existencia 80, cantidad 81",
+  "esperado": "Rechaza la línea; sin productos la factura se cancela",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Existencia insuficiente. Solo hay 80 unidades disponibles.",
+   "No se agregó ningún producto. Factura cancelada."
+  ],
+  "bd": [
+   "80",
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-04",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Cantidad igual a la existencia (límite)",
+  "datos": "P003 existencia 80, cantidad 80",
+  "esperado": "Acepta; existencia queda en 0; total 2,150.40",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Resumen: Subtotal Q 1920.00 | IVA Q 230.40 | TOTAL Q 2150.40"
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-05",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Producto inexistente en la factura",
+  "datos": "Código XXX",
+  "esperado": "Avisa y no agrega la línea",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Producto no encontrado.",
+   "No se agregó ningún producto. Factura cancelada."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-06",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Cliente inexistente",
+  "datos": "ID 99",
+  "esperado": "Mensaje de cliente no encontrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Cliente no encontrado."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-07",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Cancelar la factura al confirmar",
+  "datos": "Responde N en la confirmación",
+  "esperado": "No se guarda nada y el inventario no cambia",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Factura cancelada."
+  ],
+  "bd": [
+   "0",
+   "120"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-08",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Vendedor factura a cliente de otro vendedor",
+  "datos": "V001 intenta facturar al cliente 2 (de V002)",
+  "esperado": "Rechaza: no es de su cartera",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Ese cliente no pertenece a su cartera. No puede facturarle."
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-09",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Condición de pago inválida",
+  "datos": "Condición 3, luego 1",
+  "esperado": "Rechaza el 3",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero entre 1 y 2."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-10",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Plazo de crédito fuera de rango",
+  "datos": "Plazo 400, luego 30",
+  "esperado": "Rechaza el 400",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero entre 1 y 365."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-11",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Mismo producto en dos líneas (acumulado)",
+  "datos": "P001: 100 y luego 21 (existencia 120)",
+  "esperado": "La segunda línea ve solo 20 disponibles y rechaza 21",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Cantidad (disponible 20): 21",
+   "Existencia insuficiente. Solo hay 20 unidades disponibles."
+  ],
+  "bd": [
+   "20"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-12",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Redondeo del IVA a 2 decimales",
+  "datos": "3 x producto a Q33.33 (subtotal 99.99)",
+  "esperado": "IVA 12.00 (11.9988 redondeado), total 111.99",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Resumen: Subtotal Q 99.99 | IVA Q 12.00 | TOTAL Q 111.99"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-13",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Consultar el detalle de una factura",
+  "datos": "Factura 1 (contado)",
+  "esperado": "Muestra encabezado, líneas, IVA y total",
+  "estado": "Aprobado",
+  "obtenido": [
+   "TOTAL    : Q 414.40"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-FAC-14",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Los correlativos son consecutivos",
+  "datos": "4 facturas del flujo completo",
+  "esperado": "Correlativos 1,2,3,4 sin saltos",
+  "estado": "Aprobado",
+  "obtenido": [],
+  "bd": [
+   "1,2,3,4"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-01",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Pago parcial de una factura a crédito",
+  "datos": "Factura 1 (Q645.12), abono Q300",
+  "esperado": "Saldo restante Q345.12",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Pago registrado. Saldo restante de la factura 1: Q 345.12"
+  ],
+  "bd": [
+   "345.12"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-02",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Abono mayor al saldo",
+  "datos": "Abono Q700 con saldo Q645.12",
+  "esperado": "Rechaza; no se registra el pago",
+  "estado": "Aprobado",
+  "obtenido": [
+   "El monto (Q 700.00) excede el saldo pendiente. Pago no registrado."
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-03",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Abono igual al saldo (límite)",
+  "datos": "Abono Q645.12",
+  "esperado": "Saldo queda en 0.00",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Pago registrado. Saldo restante de la factura 1: Q 0.00"
+  ],
+  "bd": [
+   "0.0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-04",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Abono de un centavo sobre el saldo (límite +0.01)",
+  "datos": "Abono Q645.13",
+  "esperado": "Rechaza",
+  "estado": "Aprobado",
+  "obtenido": [
+   "El monto (Q 645.13) excede el saldo pendiente. Pago no registrado."
+  ],
+  "bd": [
+   "0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-05",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Dos pagos parciales seguidos",
+  "datos": "Q300 y luego Q200",
+  "esperado": "Saldos 345.12 y 145.12",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Pago registrado. Saldo restante de la factura 1: Q 345.12",
+   "Pago registrado. Saldo restante de la factura 1: Q 145.12"
+  ],
+  "bd": [
+   "345.12,145.12"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-06",
+  "req": "REQ-0005",
+  "prio": "Media",
+  "desc": "Monto cero o negativo",
+  "datos": "Monto 0, luego 100",
+  "esperado": "Rechaza el 0",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número mayor o igual a 0.01.",
+   "Pago registrado. Saldo restante de la factura 1: Q 545.12"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-07",
+  "req": "REQ-0005",
+  "prio": "Media",
+  "desc": "Factura sin saldo pendiente",
+  "datos": "Factura 99",
+  "esperado": "Mensaje de que no está disponible",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Esa factura no tiene saldo pendiente o no está disponible para usted."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-08",
+  "req": "REQ-0005",
+  "prio": "Media",
+  "desc": "Sin facturas pendientes",
+  "datos": "Base sin facturas",
+  "esperado": "Informa que no hay saldos pendientes",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No hay facturas con saldo pendiente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-09",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Factura al contado nace pagada",
+  "datos": "Factura contado Q347.20",
+  "esperado": "Pago automático por el total y saldo 0",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Condición (1=Contado, 2=Crédito): 1",
+   "Condición       : Contado"
+  ],
+  "bd": [
+   "347.2",
+   "0.0"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-10",
+  "req": "REQ-0005",
+  "prio": "Media",
+  "desc": "Consultar pagos de una factura",
+  "datos": "Factura 2 del flujo (2 pagos)",
+  "esperado": "Lista los 2 pagos y el saldo actual",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Saldo actual de la factura: Q 305.12",
+   "Total de registros: 2"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PAG-11",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "Vendedor no ve facturas de otro vendedor al pagar",
+  "datos": "V001 con factura crédito de V002",
+  "esperado": "No aparece la factura de V002",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No hay facturas con saldo pendiente."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-01",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Reporte de Clientes",
+  "datos": "Base del flujo completo",
+  "esperado": "3 clientes con vendedor asignado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 3"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-02",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Reporte de Vendedores",
+  "datos": "Base del flujo completo",
+  "esperado": "Solo vendedores (2) con cantidad de clientes; sin Repartidor",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 2"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-03",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Reporte de Productos Vendidos",
+  "datos": "Sin rango de fechas",
+  "esperado": "P001 36 u. (900.00), P003 15 (360.00), P002 12 (576.00), P004 4 (120.00)",
+  "estado": "Aprobado",
+  "obtenido": [
+   "P001      Jabón líquido multiusos 1L           36          900.00",
+   "P003      Cloro 1 galón                        15          360.00",
+   "P002      Desinfectante pino 1 galón           12          576.00"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-04",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Ventas del Día",
+  "datos": "Fecha de hoy",
+  "esperado": "4 facturas; total vendido Q 2190.72",
+  "estado": "Aprobado",
+  "obtenido": [
+   "TOTAL VENDIDO DEL DÍA: Q 2190.72"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-05",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Pagos del Día",
+  "datos": "Fecha de hoy",
+  "esperado": "4 pagos; total recibido Q 1482.40",
+  "estado": "Aprobado",
+  "obtenido": [
+   "TOTAL RECIBIDO DEL DÍA: Q 1482.40"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-06",
+  "req": "REQ-0006",
+  "prio": "Alta",
+  "desc": "Inventario Existente",
+  "datos": "Base del flujo completo",
+  "esperado": "P001 84, P002 48, P003 65, P004 46",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 4"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-07",
+  "req": "REQ-0006",
+  "prio": "Media",
+  "desc": "Productos vendidos con rango sin ventas",
+  "datos": "Desde 2099-01-01",
+  "esperado": "Sin registros",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 0"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REP-08",
+  "req": "REQ-0006",
+  "prio": "Media",
+  "desc": "Reportes en base vacía",
+  "datos": "Ventas del día sin facturas",
+  "esperado": "Informa que no hay datos, sin errores",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 0",
+   "TOTAL VENDIDO DEL DÍA: Q 0.00"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-UI-01",
+  "req": "REQ-0007",
+  "prio": "Media",
+  "desc": "Opción de menú inválida",
+  "datos": "Opción 9 en el menú principal",
+  "esperado": "Mensaje de valor inválido y vuelve a mostrar el menú",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero entre 0 y 6."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-UI-02",
+  "req": "REQ-0007",
+  "prio": "Media",
+  "desc": "Letras donde se espera un número",
+  "datos": "Texto 'abc' en el menú",
+  "esperado": "Mensaje claro, no se cierra el programa",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor inválido. Ingrese un número entero entre 0 y 6."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-PER-01",
+  "req": "REQ-0008",
+  "prio": "Alta",
+  "desc": "Los datos persisten al cerrar y volver a abrir",
+  "datos": "Sesión 1 registra V003; sesión 2 consulta",
+  "esperado": "V003 sigue en la lista",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Total de registros: 4"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-01",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Inyección SQL: texto con comillas y DROP TABLE como nombre de cliente",
+  "datos": "Nombre: x'); DROP TABLE Cliente;--",
+  "esperado": "Se guarda como texto normal; la tabla Cliente sigue existiendo",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Cliente registrado correctamente."
+  ],
+  "bd": [
+   "1",
+   "x'); DROP TABLE Cliente;--"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-02",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "Transacción: falla a mitad de la factura (se simula con un trigger que aborta el INSERT del detalle)",
+  "datos": "Factura contado de 10 x P001 con el fallo simulado",
+  "esperado": "ROLLBACK: no queda factura, ni pago, ni cambio en el inventario",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No se pudo generar la factura. No se realizó ningún cambio."
+  ],
+  "bd": [
+   "0",
+   "0",
+   "120"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-03",
+  "req": "REQ-0008",
+  "prio": "Media",
+  "desc": "Fin inesperado de la entrada (stdin cerrado)",
+  "datos": "Programa sin ningún dato de entrada",
+  "esperado": "Cierra de forma ordenada, sin colgarse ni fallar",
+  "estado": "Aprobado",
+  "obtenido": [
+   "[Fin de la entrada. Cerrando el sistema]"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-04",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Modificar producto con costo en texto",
+  "datos": "Costo: abc",
+  "esperado": "Mensaje de valor inválido; sin cambios",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Valor numérico inválido. No se realizaron cambios."
+  ],
+  "bd": [
+   "18.5"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-05",
+  "req": "REQ-0003",
+  "prio": "Media",
+  "desc": "Modificar producto con costo negativo",
+  "datos": "Costo: -5",
+  "esperado": "Rechaza; sin cambios",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Los valores no pueden ser negativos. No se realizaron cambios."
+  ],
+  "bd": [
+   "18.5"
+  ],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-06",
+  "req": "REQ-0003",
+  "prio": "Baja",
+  "desc": "Modificar un producto que no existe",
+  "datos": "Código P999",
+  "esperado": "Mensaje de no encontrado",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No existe un producto con ese código."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-07",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "Vendedor intenta modificar un cliente de otro vendedor",
+  "datos": "V001 modifica el cliente 2 (de V002)",
+  "esperado": "Rechaza: no está en su cartera",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No existe un cliente con ese ID en su cartera."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-08",
+  "req": "REQ-0002",
+  "prio": "Alta",
+  "desc": "Vendedor intenta ver el historial de un cliente ajeno",
+  "datos": "V001 consulta el historial del cliente 2",
+  "esperado": "Rechaza: no está en su cartera",
+  "estado": "Aprobado",
+  "obtenido": [
+   "No existe un cliente con ese ID en su cartera."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-09",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "Producto agotado dentro de la misma factura",
+  "datos": "P003 por 80 unidades y luego P003 otra vez",
+  "esperado": "Avisa que ya no hay existencia disponible",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Sin existencia disponible de Cloro 1 galón."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-COD-10",
+  "req": "REQ-0007",
+  "prio": "Baja",
+  "desc": "Respuesta inválida en la confirmación",
+  "datos": "Responde 'x' y luego N",
+  "esperado": "Pide responder S o N",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Responda S o N.",
+   "Factura cancelada."
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-01",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Verificación de integridad de la BD",
+  "datos": "PRAGMA integrity_check",
+  "esperado": "Devuelve ok",
+  "estado": "Aprobado",
+  "obtenido": [
+   "integrity_check = ok"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-02",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "Verificación de llaves foráneas",
+  "datos": "PRAGMA foreign_key_check",
+  "esperado": "Sin filas (ninguna referencia rota)",
+  "estado": "Aprobado",
+  "obtenido": [
+   "foreign_key_check = 0 filas"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-03",
+  "req": "REQ-0003",
+  "prio": "Alta",
+  "desc": "Inventario nunca negativo",
+  "datos": "SELECT con existencia < 0",
+  "esperado": "0 productos",
+  "estado": "Aprobado",
+  "obtenido": [
+   "0 productos con existencia negativa"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-04",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "IVA y total cuadran en todas las facturas",
+  "datos": "subtotal + IVA = total e IVA = 12 % del subtotal",
+  "esperado": "0 facturas con diferencia",
+  "estado": "Aprobado",
+  "obtenido": [
+   "0 facturas con diferencia"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-05",
+  "req": "REQ-0004",
+  "prio": "Alta",
+  "desc": "El subtotal de cada factura es la suma de sus líneas",
+  "datos": "Suma de DetalleFactura vs Factura.subtotal",
+  "esperado": "0 diferencias",
+  "estado": "Aprobado",
+  "obtenido": [
+   "0 facturas con diferencia"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-06",
+  "req": "REQ-0005",
+  "prio": "Alta",
+  "desc": "El saldo de cada factura = total - pagos",
+  "datos": "Comparar saldo registrado con total menos pagos",
+  "esperado": "0 diferencias",
+  "estado": "Aprobado",
+  "obtenido": [
+   "0 facturas con diferencia"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-07",
+  "req": "REQ-0009",
+  "prio": "Alta",
+  "desc": "La BD rechaza un pago de una factura inexistente",
+  "datos": "INSERT Pago con factura 999",
+  "esperado": "Error de llave foránea",
+  "estado": "Aprobado",
+  "obtenido": [
+   "FOREIGN KEY constraint failed"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-08",
+  "req": "REQ-0003",
+  "prio": "Alta",
+  "desc": "La BD rechaza existencia negativa",
+  "datos": "UPDATE Producto SET existencia = -1",
+  "esperado": "Error de restricción CHECK",
+  "estado": "Aprobado",
+  "obtenido": [
+   "CHECK constraint failed: existencia >= 0"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-09",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "La BD rechaza una condición de pago inválida",
+  "datos": "INSERT Factura con condición 'Otro'",
+  "esperado": "Error de restricción CHECK",
+  "estado": "Aprobado",
+  "obtenido": [
+   "CHECK constraint failed: condicion IN ('Contado','Crédito')"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-10",
+  "req": "REQ-0001",
+  "prio": "Media",
+  "desc": "La BD impide borrar un vendedor con clientes",
+  "datos": "DELETE de V001 (tiene clientes)",
+  "esperado": "Error de llave foránea",
+  "estado": "Aprobado",
+  "obtenido": [
+   "FOREIGN KEY constraint failed"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-INT-11",
+  "req": "REQ-0004",
+  "prio": "Media",
+  "desc": "La BD rechaza una línea de factura con cantidad 0",
+  "datos": "INSERT DetalleFactura con cantidad 0",
+  "esperado": "Error de restricción CHECK",
+  "estado": "Aprobado",
+  "obtenido": [
+   "CHECK constraint failed: cantidad > 0"
+  ],
+  "bd": [],
+  "notas": []
+ },
+ {
+  "id": "CP-REN-01",
+  "req": "REQ-0008",
+  "prio": "Media",
+  "desc": "Tiempo de respuesta de reportes con 5,000 facturas",
+  "datos": "Se agregan 5,000 facturas con detalle y pago y se corren 3 reportes",
+  "esperado": "Cada reporte tarda menos de 3 segundos",
+  "estado": "Aprobado",
+  "obtenido": [
+   "Ventas del Día (5,004 facturas): 0.01 s / Productos Vendidos (5,004 facturas): 0.02 s / Pagos del Día (5,004 pagos): 0.01 s"
+  ],
+  "bd": [],
+  "notas": []
+ }
+]
